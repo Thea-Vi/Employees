@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.math.BigDecimal;
@@ -29,9 +30,21 @@ public class PeopleController {
         return personRepository.findAll();
     }
 
+    @ModelAttribute
+    public Person getPerson() {
+        return new Person();
+    }
+
     @GetMapping
     public String displayPeople(){
         return "people";
+    }
+
+    @PostMapping
+    public String createPerson(Person person) {
+        System.out.println(person);
+        personRepository.save(person);
+        return "redirect:people";
     }
 }
 
