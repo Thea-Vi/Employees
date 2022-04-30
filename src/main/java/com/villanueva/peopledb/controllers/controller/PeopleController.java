@@ -5,11 +5,13 @@ import com.villanueva.peopledb.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -41,10 +43,14 @@ public class PeopleController {
     }
 
     @PostMapping
-    public String createPerson(Person person) {
+    public String savePerson(@Valid Person person, Errors errors) {
         System.out.println(person);
-        personRepository.save(person);
-        return "redirect:people";
+//        error check
+        if (!errors.hasErrors()) {
+            personRepository.save(person);
+            return "redirect:people";
+        }
+        return "people";
     }
 }
 

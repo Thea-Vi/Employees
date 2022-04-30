@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-@Component
+//@Component
 public class PersonDataLoader implements ApplicationRunner {
     private PersonRepository personRepository;
 
@@ -18,6 +18,7 @@ public class PersonDataLoader implements ApplicationRunner {
         this.personRepository = personRepository;
     }
 
+//    use as a starter
     @Override
     public void run(ApplicationArguments args) throws Exception {
         if (personRepository.count() == 0) {
