@@ -1,4 +1,4 @@
-package com.villanueva.peopledb.controller;
+package com.villanueva.peopledb.controllers.controller;
 
 import com.villanueva.peopledb.business.model.Person;
 import org.springframework.stereotype.Controller;
