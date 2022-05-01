@@ -6,15 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/people")
@@ -37,11 +35,13 @@ public class PeopleController {
         return new Person();
     }
 
+    // SHOW
     @GetMapping
     public String displayPeople(){
         return "people";
     }
 
+    // POST
     @PostMapping
     public String savePerson(@Valid Person person, Errors errors) {
         System.out.println(person);
@@ -51,6 +51,16 @@ public class PeopleController {
             return "redirect:people";
         }
         return "people";
+    }
+
+    // DELETE
+    @PostMapping(params = "delete=true")
+    public String deletePerson(@RequestParam Optional<List<Long>> options) {
+        System.out.println(options);
+        if (options.isPresent()) {
+            personRepository.deleteAllById(options.get());
+        }
+        return "redirect:people";
     }
 }
 

@@ -10,43 +10,49 @@
 <body>
 
 
-<div class="col-md-8 col-sm-10 mx-auto my-5">
+<div class="col-md-8 col-sm-11 mx-auto my-5">
     <h3>Employee List</h3>
-    <table class="table table-bordered table-hover table-sm">
-        <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Date of Birth</th>
-            <th scope="col">Email</th>
-            <th scope="col">Salary</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${#lists.isEmpty(people)}">
-            <td colspan="6" class="text-center">No Data</td>
-        </tr>
-        <tr th:each="person : ${people}">
-            <th scope="row" th:text="${person.id}">1</th>
-            <td th:text="${person.lastName}">Mark</td>
-            <td th:text="${person.firstName}">Mark</td>
-            <td th:text="${{person.dob}}">Mark</td>
-            <td th:text="${person.email}">Mark</td>
-            <td th:text="${{person.salary}}">Mark</td>
-        </tr>
-<!--        thymeleaf ignores static data-->
-        <tr th:remove="all">
-            <th scope="row">2</th>
+    <form method="post">
+        <table class="table table-bordered table-hover table-sm">
+            <thead>
+            <tr>
+                <th scope="col">Select</th>
+                <th scope="col">ID</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">Email</th>
+                <th scope="col">Salary</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${#lists.isEmpty(people)}">
+                <td colspan="6" class="text-center">No Data</td>
+            </tr>
+            <tr th:each="person : ${people}">
+                <td><input class="form-check-input" type="checkbox" name="options" th:value="${person.id}"></td>
+                <th scope="row" th:text="${person.id}"></th>
+                <td th:text="${person.lastName}"></td>
+                <td th:text="${person.firstName}"></td>
+                <td th:text="${{person.dob}}"></td>
+                <td th:text="${person.email}"></td>
+                <td th:text="${{person.salary}}"></td>
+            </tr>
+            <!--        thymeleaf ignores static data-->
+            <tr th:remove="all">
+                <th scope="row">2</th>
                 <td>Nina</td>
                 <td>Nina</td>
                 <td>Nina</td>
                 <td>Nina</td>
-            </th>
-        </tr>
-        </tbody>
-    </table>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+        <button type="submit" name="delete" value="true" class="btn btn-danger mb-4">Delete</button>
+    </form>
     <h4>Employee Form</h4>
+
 <form th:object="${person}" method="post" novalidate>
     <div class="form-group">
         <label for="firstName">First Name</label>
