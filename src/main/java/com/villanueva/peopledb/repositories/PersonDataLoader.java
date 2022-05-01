@@ -23,9 +23,9 @@ public class PersonDataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         if (personRepository.count() == 0) {
             List<Person> people = List.of(
-                    new Person(null, "John", "Smith", LocalDate.of(1950, 1, 1),"abc@test.com", new BigDecimal("50000")),
-                    new Person(null, "Jen", "Man", LocalDate.of(1953, 4, 1), "abc@test.com", new BigDecimal("30000")),
-                    new Person(null, "Lab", "Doe", LocalDate.of(1953, 4, 1), "abc@test.com", new BigDecimal("30000"))
+//                    new Person(null, "John", "Smith", LocalDate.of(1950, 1, 1),"abc@test.com", new BigDecimal("50000")),
+//                    new Person(null, "Jen", "Man", LocalDate.of(1953, 4, 1), "abc@test.com", new BigDecimal("30000")),
+//                    new Person(null, "Lab", "Doe", LocalDate.of(1953, 4, 1), "abc@test.com", new BigDecimal("30000"))
             );
             personRepository.saveAll(people);
         }

@@ -23,6 +23,7 @@
                 <th scope="col">Date of Birth</th>
                 <th scope="col">Email</th>
                 <th scope="col">Salary</th>
+                <th scope="col">Photo</th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,7 @@
                 <td th:text="${{person.dob}}"></td>
                 <td th:text="${person.email}"></td>
                 <td th:text="${{person.salary}}"></td>
+                <td th:text="${{person.photoFilename}}"></td>
             </tr>
             <!--        thymeleaf ignores static data-->
             <tr th:remove="all">
@@ -49,11 +51,12 @@
             </tr>
             </tbody>
         </table>
+        <button type="submit" name="edit" value="true" class="btn btn-warning mb-4 me-2">Edit</button>
         <button type="submit" name="delete" value="true" class="btn btn-danger mb-4">Delete</button>
     </form>
     <h4>Employee Form</h4>
 
-<form th:object="${person}" method="post" novalidate>
+<form th:object="${person}" method="post" novalidate enctype="multipart/form-data">
     <div class="form-group">
         <label for="firstName">First Name</label>
         <input type="text" class="form-control " id="firstName" th:field="*{firstName}" th:errorclass="is-invalid" aria-describedby="firstNameHelp">
@@ -85,6 +88,12 @@
         <div id="validationSalary" class="invalid-feedback" th:errors="*{salary}">
         </div>
     </div>
+    <div class="mb-3">
+        <label for="photoFilename" class="form-label">Image File</label>
+        <input class="form-control" type="file" id="photoFilename" th:field="*{photoFilename}">
+
+    </div>
+    <input type="hidden" th:field="*{id}"/>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
