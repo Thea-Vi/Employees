@@ -3,6 +3,8 @@ package com.villanueva.peopledb.services;
 import com.villanueva.peopledb.business.model.Person;
 import com.villanueva.peopledb.repositories.FileStorageRepository;
 import com.villanueva.peopledb.repositories.PersonRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,6 +35,11 @@ public class PersonService {
 
     public Iterable<Person> findAll() {
         return personRepository.findAll();
+    }
+
+//    PAGEABLE
+    public Page<Person> findAll(Pageable pageable) {
+        return personRepository.findAll(pageable);
     }
 
     public void deleteAllById(Iterable<? extends Long> longs) {
