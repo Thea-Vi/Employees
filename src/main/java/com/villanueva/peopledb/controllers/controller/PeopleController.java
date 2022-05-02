@@ -1,6 +1,7 @@
 package com.villanueva.peopledb.controllers.controller;
 
 import com.villanueva.peopledb.business.model.Person;
+import com.villanueva.peopledb.repositories.FileStorageRepository;
 import com.villanueva.peopledb.repositories.PersonRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
@@ -22,10 +24,12 @@ import java.util.Optional;
 public class PeopleController {
 
     private PersonRepository personRepository;
+    private FileStorageRepository fileStorageRepository;
 
 //    create constructor instead of @autowired --SC com return
-    public PeopleController(PersonRepository personRepository) {
+    public PeopleController(PersonRepository personRepository, FileStorageRepository fileStorageRepository) {
         this.personRepository = personRepository;
+        this.fileStorageRepository = fileStorageRepository;
     }
 
     @ModelAttribute("people")
@@ -46,13 +50,15 @@ public class PeopleController {
 
     // POST
     @PostMapping                                                    //required for uploading file
-    public String savePerson(@Valid Person person, Errors errors, @RequestParam MultipartFile photoFilename) {
+    public String savePerson(@Valid Person person, Errors errors, @RequestParam MultipartFile photoFilename) throws IOException {
         log.info(person);
         log.info(photoFilename.getOriginalFilename());
         log.info("Errors" + errors);
 //        error check
         if (!errors.hasErrors()) {
             personRepository.save(person);
+            fileStorageRepository.save(photoFilename.getOriginalFilename(), photoFilename.getInputStream());
+
             return "redirect:people";
         }
         return "people";
