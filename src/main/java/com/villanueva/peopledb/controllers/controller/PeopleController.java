@@ -3,6 +3,7 @@ package com.villanueva.peopledb.controllers.controller;
 import com.villanueva.peopledb.business.model.Person;
 import com.villanueva.peopledb.repositories.FileStorageRepository;
 import com.villanueva.peopledb.repositories.PersonRepository;
+import com.villanueva.peopledb.services.PersonService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,15 @@ import java.util.Optional;
 @Log4j2 //enables logging - can be turned on and off - better than system.out.println
 public class PeopleController {
 
-    private PersonRepository personRepository;
-    private FileStorageRepository fileStorageRepository;
+    private final PersonRepository personRepository;
+    private final FileStorageRepository fileStorageRepository;
+    private final PersonService personService;
 
 //    create constructor instead of @autowired --SC com return
-    public PeopleController(PersonRepository personRepository, FileStorageRepository fileStorageRepository) {
+    public PeopleController(PersonRepository personRepository, FileStorageRepository fileStorageRepository, PersonService personService) {
         this.personRepository = personRepository;
         this.fileStorageRepository = fileStorageRepository;
+        this.personService = personService;
     }
 
     @ModelAttribute("people")
@@ -57,8 +60,6 @@ public class PeopleController {
 //        error check
         if (!errors.hasErrors()) {
             personRepository.save(person);
-            fileStorageRepository.save(photoFilename.getOriginalFilename(), photoFilename.getInputStream());
-
             return "redirect:people";
         }
         return "people";
@@ -69,6 +70,7 @@ public class PeopleController {
     public String deletePerson(@RequestParam Optional<List<Long>> options) {
         log.info(options);
         if (options.isPresent()) {
+//            personRepository.deleteAllById(options.get());
             personRepository.deleteAllById(options.get());
         }
         return "redirect:people";
