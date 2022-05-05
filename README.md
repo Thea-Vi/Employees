@@ -22,11 +22,11 @@ Dashboard <br/>
 <img src="https://i.imgur.com/JBJPkMN.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Edit <br/>
+Edit an Employee<br/>
 <img src="https://i.imgur.com/ekQnwsf.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Updated:  <br/>
+Updated Page <br/>
 <img src="https://i.imgur.com/laLaVb9.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
@@ -34,7 +34,7 @@ Pagination Feature <br/>
 <img src="https://i.imgur.com/FwC667I.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
-Delete: <br/>
+Delete an Employee<br/>
 <img src="https://i.imgur.com/BS54xk1.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 <br />
 <br />
