@@ -2,7 +2,8 @@
 
 <h2>Description</h2>
 
-Employee List is a one page CRUD application 
+Employee List is a one page CRUD application </br>
+This project was inspired by a Udemy Course. I wanted to learn more about Spring Boot, Intellij, and implement pagination feature.
 <br />
 
 <h2>Languages | Framework | Database Used</h2>
