@@ -3,7 +3,7 @@
 <h2>Description</h2>
 
 Employee List is a one page CRUD application </br>
-This project was inspired by a Udemy Course. I wanted to learn more about Spring Boot, Intellij, and implement pagination feature.
+This project was inspired by a Udemy Course. I wanted to learn more about Spring Boot, IntelliJ IDEA, and implement pagination feature.
 <br />
 
 <h2>Languages | Framework | Database Used</h2>
@@ -13,7 +13,7 @@ This project was inspired by a Udemy Course. I wanted to learn more about Spring
 
 <h2>IDE used</h2>
 
-- <b>Intellije IDEA</b> 
+- <b>IntelliJ IDEA</b> 
 
 <h2>Program walk-through:</h2>
 
